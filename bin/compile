@@ -143,7 +143,7 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
-curl -L https://github.com/ted/heroku-buildpack-google-chrome/blob/master/dependencies/google-chrome-stable_current_amd64.deb -o chrome.deb
+curl -L https://github.com/ted/heroku-buildpack-google-chrome/raw/master/dependencies/google-chrome-stable_current_amd64.deb -o chrome.deb
 dpkg -I chrome.deb
 dpkg -x chrome.deb $BUILD_DIR/.apt/
 
