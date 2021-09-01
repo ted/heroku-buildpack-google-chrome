@@ -109,7 +109,8 @@ fi
 
 topic "Installing Google Chrome from the $channel channel."
 
-PACKAGES="$PACKAGES https://dl.google.com/linux/direct/google-chrome-${channel}_current_amd64.deb"
+
+PACKAGES="$PACKAGES"
 
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
@@ -141,6 +142,10 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
+
+curl -L https://github.com/ted/heroku-buildpack-google-chrome/blob/master/dependencies/google-chrome-stable_current_amd64.deb -o chrome.deb
+dpkg -I chrome.deb
+dpkg -x chrome.deb $BUILD_DIR/.apt/
 
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
